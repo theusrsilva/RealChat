@@ -1,6 +1,7 @@
 .msg-user{
 border-radius: 15px 15px 10px 5px;
-width:100px;
+width:100%;
+padding:1px;
 text-align:center;
 background: #e1ffc7;
 float: right;
@@ -8,7 +9,8 @@ color: black;
 }
 .msg-other{
 border-radius: 15px 15px 10px 5px;
-width:100px;
+width:100%;
+padding:1px;
 text-align:center;
 background: #fff;
 float: right;
@@ -50,8 +52,15 @@ outline: none;
 #messages{
 padding:20px;
 }
+.mmm{
+position: relative;
+height: 100%;
+overflow-y: scroll;
+height: calc(100vh - 113px);
+}
 .user-ip{
-width:100px;
+width:100%;
+padding:3px;
 text-align:center;
 background: #e1ffc7;
 border-radius: 15px;
@@ -59,7 +68,8 @@ float: right;
 color: black;
 }
 .other-ip{
-width:100px;
+width:100%;
+padding:3px;
 text-align:center;
 background: #fff;
 border-radius: 15px;
