@@ -3,29 +3,72 @@
 <title>Chat Room</title>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script type="text/javascript" src="https://l2.io/ip.js?var=userip"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <script type="text/javascript">
 $(document).ready(function() {
-
 	var socket = io.connect('http://127.0.0.1:5000');
+	var ipAddress;
+	getIp(function (ip) {
+	    ipAddress = ip;
+    });
 	socket.on('connect', function() {
-		socket.send(' is online!');
+		socket.send(ipAddress+' esta online!');
 	});
 	socket.on('message', function(msg) {
-	    $("#messages").append('<tr><td class="userip">'+'tt'+'</td><td class="usermsg">'+msg+'</td></tr>');
+	    var result = formatMsg(msg);
+	    $("#messages").append('<tr><td class="userip">'+result[0]+'</td><td class="usermsg">'+result[1]+'</td></tr>');
 	});
 	$('#sendbutton').on('click', function() {
 	    if($('#myMessage').val() != ''){
-		    socket.send($('#myMessage').val());
+		    socket.send(ipAddress+' '+$('#myMessage').val());
 		    $('#myMessage').val('');
 	    }else{
 	        alert('Escreva uma mensagem!');
 	    }
 	});
-});
+	function formatMsg(msg){
+	    var ip = msg.split(' ')[0];
+	    var mensagem = msg.replace(ip,'');
+	    var array = [ip, mensagem];
+	    return array;
+	}
+	
+	function getIp(callback){
+        function response(s)
+        {
+            callback(window.userip);
 
+            s.onload = s.onerror = null;
+            document.body.removeChild(s);
+        }
+
+        function trigger()
+        {
+            window.userip = false;
+
+            var s = document.createElement("script");
+            s.async = true;
+            s.onload = function() {
+                response(s);
+            };
+            s.onerror = function() {
+                response(s);
+            };
+
+            s.src = "https://l2.io/ip.js?var=userip";
+            document.body.appendChild(s);
+        }
+
+        if (/^(interactive|complete)$/i.test(document.readyState)) {
+            trigger();
+        } else {
+            document.addEventListener('DOMContentLoaded', trigger);
+        }
+    }
+});
 </script>
 <table id="messages"></table>
 <input type="text" id="myMessage">

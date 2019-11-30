@@ -6,9 +6,8 @@ app.config['SECRET_KEY'] = 'mysecret'
 socketio = SocketIO(app, cors_allowed_origins="*")
 
 @socketio.on('message')
-
 def handleMessage(msg):
-	print('Message: '+ msg)
+	print('Mensagem: '+msg)
 	send(msg, broadcast=True)
 
 if __name__ == '__main__':
