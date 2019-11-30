@@ -19,7 +19,11 @@ $(document).ready(function() {
 	});
 	socket.on('message', function(msg) {
 	    var result = formatMsg(msg);
-	    $("#messages").append('<tr><td class="userip">'+result[0]+'</td><td class="usermsg">'+result[1]+'</td></tr>');
+	    if(result[0]==ipAddress){
+	            $("#messages").append('<tr><td><div class="user-ip"><p>'+result[0]+'</p></div></td><td><div class="msg-user"><p>'+result[1]+'</p></div></td></tr>');
+	        }else{
+	            $("#messages").append('<tr><td><div class="other-ip"><p>'+result[0]+'</p></div></td><td><div class="msg-other"><p>'+result[1]+'</p></div></td></tr>');
+	        }
 	});
 	$('#sendbutton').on('click', function() {
 	    if($('#myMessage').val() != ''){
@@ -35,7 +39,7 @@ $(document).ready(function() {
 	    var array = [ip, mensagem];
 	    return array;
 	}
-	
+
 	function getIp(callback){
         function response(s)
         {
@@ -70,8 +74,10 @@ $(document).ready(function() {
     }
 });
 </script>
-<table id="messages"></table>
-<input type="text" id="myMessage">
-<button id="sendbutton">Send</button>
+<div class="corpo">
+    <table id="messages"></table>
+    <input type="text" id="myMessage">
+    <button id="sendbutton">Send</button>
+</div>
 </body>
 </html>
