@@ -25,14 +25,22 @@ $(document).ready(function() {
 	            $("#messages").append('<tr><td><div class="other-ip"><p>'+result[0]+'</p></div></td><td><div class="msg-other"><p>'+result[1]+'</p></div></td></tr>');
 	        }
 	});
+	$('.alert').hide();
 	$('#sendbutton').on('click', function() {
 	    if($('#myMessage').val() != ''){
 		    socket.send(ipAddress+' '+$('#myMessage').val());
 		    $('#myMessage').val('');
 	    }else{
-	        alert('Escreva uma mensagem!');
+	        $('.alert').show();
 	    }
+
+
 	});
+	$(document).on('keypress',function(e) {
+    if(e.which == 13) {
+        $('#sendbutton').click();
+    }
+    });
 	function formatMsg(msg){
 	    var ip = msg.split(' ')[0];
 	    var mensagem = msg.replace(ip,'');
@@ -75,9 +83,17 @@ $(document).ready(function() {
 });
 </script>
 <div class="corpo">
-    <table id="messages"></table>
-    <input type="text" id="myMessage">
-    <button id="sendbutton">Send</button>
+    <div>
+        <table id="messages"></table>
+    </div>
+    <div class="submit">
+        <div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            Envie uma mensagem não vazia!
+        </div>
+        <input placeholder="Escreva aqui sua mensagem!" type="text" id="myMessage">
+        <button id="sendbutton" type="button">Enviar</button>
+    </div>
 </div>
 </body>
 </html>

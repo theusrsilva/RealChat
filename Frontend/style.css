@@ -14,6 +14,39 @@ background: #fff;
 float: right;
 color: black;
 }
+
+#sendbutton{
+cursor:pointer;
+background-color: #4CAF50;
+border: none;
+border-radius:15px;
+color: white;
+padding: 15px 32px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+transition: 0.15s;
+}
+#sendbutton:hover{
+background-color: #367c39;
+}
+.submit{
+width:100%;
+margin:20px;
+position: absolute;
+bottom: 30px;
+}
+#myMessage{
+border-style:none;
+border-radius: 15px;
+padding:15px;
+align: center;
+width:70%;
+}
+#myMessage:focus{
+outline: none;
+}
 #messages{
 padding:20px;
 }
@@ -34,11 +67,38 @@ float: right;
 color: black;
 }
 .corpo{
+margin-left:8px;
 border-radius:15px;
 width :100%;
 height :100%;
 background-color: #F0E7DE;
 }
 body{
+overflow-x: hidden;
 background-color: #323639;
+}
+.alert {
+  font-size: 20px;
+  display:hidden;
+  border-radius:15px;
+  width:70%;
+  margin:10px;
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
 }
