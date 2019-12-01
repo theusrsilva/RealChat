@@ -1,1 +1,1 @@
-"web: python Backend/server.py" 
+"web: python server.py"
