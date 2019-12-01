@@ -12,7 +12,6 @@ distlib==0.3.0
 dnspython==1.16.0
 eventlet==0.25.1
 first==2.0.2
-Flask==1.1.1
 Flask-SocketIO==4.2.1
 format-pipfile==0.0.6
 future==0.18.2
