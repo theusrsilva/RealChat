@@ -9,7 +9,9 @@
 <body>
 <script type="text/javascript">
 $(document).ready(function() {
-	var socket = io.connect('http://dc7ce885.ngrok.io');
+
+	//var socket = io.connect('http://15f5a5bb.ngrok.io');
+	var socket = io.connect('http://127.0.0.1:5000');
 	var ipAddress;
 	getIp(function (ip) {
 	    ipAddress = ip;
