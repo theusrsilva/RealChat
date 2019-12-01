@@ -13,6 +13,7 @@ $(document).ready(function() {
 	//var socket = io.connect('http://15f5a5bb.ngrok.io');
 	var socket = io.connect('http://127.0.0.1:5000');
 	var ipAddress;
+	const objDiv = document.getElementById("mmm");
 	getIp(function (ip) {
 	    ipAddress = ip;
     });
@@ -23,11 +24,14 @@ $(document).ready(function() {
 	    var result = formatMsg(msg);
 	    if(result[0]==ipAddress){
 	            $("#messages").append('<tr><td><div class="user-ip"><p>'+result[0]+'</p></div></td><td><div class="msg-user"><p>'+result[1]+'</p></div></td></tr>');
+	            objDiv.scrollTop = objDiv.scrollHeight;
 	        }else{
 	            $("#messages").append('<tr><td><div class="other-ip"><p>'+result[0]+'</p></div></td><td><div class="msg-other"><p>'+result[1]+'</p></div></td></tr>');
+	            objDiv.scrollTop = objDiv.scrollHeight;
 	        }
 	});
 	$('.alert').hide();
+
 	$('#sendbutton').on('click', function() {
 	    if($('#myMessage').val() != ''){
 		    socket.send(ipAddress+' '+$('#myMessage').val());
@@ -82,10 +86,11 @@ $(document).ready(function() {
             document.addEventListener('DOMContentLoaded', trigger);
         }
     }
+
 });
 </script>
 <main class="corpo">
-    <div class="mmm">
+    <div class="mmm" id="mmm">
         <table id="messages"></table>
     </div>
     <div class="submit">
